@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FacilityActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="What this place offers"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="What this place offers"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/attach_bathroomLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Bathroom"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/hairDryerCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Hair Dryer" />
+
+                <CheckBox
+                    android:id="@+id/shampooCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Shampoo" />
+
+                <CheckBox
+                    android:id="@+id/hotWaterCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Hot Water" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bedroomLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Bedroom and Laundry"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/essentialsCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Essentials (Towel, bed sheet, soap, toilet paper)" />
+
+                <CheckBox
+                    android:id="@+id/hangerCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Hangers" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/familyLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Family"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/cotCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Cot" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/heating_cooling_Ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Heating and Cooling"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/airConditioningCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Air Conditioning" />
+
+                <CheckBox
+                    android:id="@+id/heaterCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Heater" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/home_safety_Ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Home Safety"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/firstAidCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="First Aid Kit" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/InternetLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Internet and Office"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/wifiCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Wifi" />
+
+                <CheckBox
+                    android:id="@+id/dedicatedWorkspaceCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Dedicated Workspace" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/kitchenLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Kitchen and Dining"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/kitchenCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Kitchen" />
+
+                <CheckBox
+                    android:id="@+id/refrigeratorCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Refrigerator" />
+
+                <CheckBox
+                    android:id="@+id/cookingBasicsCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Cooking Basics" />
+
+                <CheckBox
+                    android:id="@+id/dishesSilverWareLl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="Dishes and Silverware" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/locationLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Location Features"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/privateEntrance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Private Entrance" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/outDoorLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="OutDoor"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/balconyCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Private Patio or Balcony" />
+
+                <CheckBox
+                    android:id="@+id/gardenCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Garden" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/freeParkingLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Parking and Facilities"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/freeParkingCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Free parking on Premises" />
+
+
+                <CheckBox
+                    android:id="@+id/poolCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Private Pool" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/serviceLl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Services"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/longTermsLl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Long term stays allowed" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/saveAndNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save and Next" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

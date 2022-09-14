@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:layout_centerHorizontal="true">
+
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:text="Camera"
+        android:background="@drawable/dialog_btn_bg"
+        android:textColor="#000000" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_below="@+id/camera"
+        android:layout_centerHorizontal="true"
+        android:layout_height="60dp"
+        android:text="Storage"
+        android:id="@+id/storage"
+        android:textColor="#000000"
+        android:background="@drawable/dialog_btn_bg"/>
+
+</RelativeLayout>

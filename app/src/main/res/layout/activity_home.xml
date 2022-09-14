@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <Button
+        android:id="@+id/newHosting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Host a space"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/currentHosting"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/currentHosting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Hostings"
+        app:layout_constraintEnd_toStartOf="@id/newHosting"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAllCaps="false"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

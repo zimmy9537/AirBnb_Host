@@ -129,24 +129,24 @@ class SignInActivity : AppCompatActivity() {
                         )
                             .show()
                     } else {
-                        var user: User
+                        var host: Host
 
                         accountReference = firebaseDatabase.reference.child(Konstants.HOSTS)
                         accountReference.child(mAuth.uid.toString()).child(Konstants.DATA)
                             .addListenerForSingleValueEvent(object :
                                 ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
-                                    user = snapshot.getValue(User::class.java)!!
+                                    host = snapshot.getValue(Host::class.java)!!
                                     Log.v(
                                         TAG,
-                                        "here user " + user.name + ", " + user.email
+                                        "here user " + host.name + ", " + host.email
                                     )
-                                    editor.putString(Konstants.NAME, user.name)
-                                    editor.putString(Konstants.EMAIL, user.email)
+                                    editor.putString(Konstants.NAME, host.name)
+                                    editor.putString(Konstants.EMAIL, host.email)
                                     editor.apply()
                                     Toast.makeText(
                                         baseContext,
-                                        "welcome back ${user.name}",
+                                        "welcome back ${host.name}",
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
@@ -176,15 +176,15 @@ class SignInActivity : AppCompatActivity() {
                     hostCount = snapshot.getValue(Int::class.java)!!
                     hostCount += 1
                     generalReference.child(Konstants.HOSTCOUNT).setValue(hostCount)
-                    val user = User(
+                    val host = Host(
                         account.displayName!!,
                         account.email!!
                     )
-                    editor.putString(Konstants.NAME, user.name)
-                    editor.putString(Konstants.EMAIL, user.email)
+                    editor.putString(Konstants.NAME, host.name)
+                    editor.putString(Konstants.EMAIL, host.email)
                     editor.apply()
                     accountReference.child(Konstants.DATA)
-                        .setValue(user)
+                        .setValue(host)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
