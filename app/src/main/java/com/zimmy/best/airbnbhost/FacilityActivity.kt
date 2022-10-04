@@ -21,6 +21,7 @@ class FacilityActivity : AppCompatActivity() {
         binding = ActivityFacilityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        detailsMap=HashMap()
 
         detailsMap[Konstants.HAIR_DRYER] = false
         detailsMap[Konstants.SHAMPOO] = false

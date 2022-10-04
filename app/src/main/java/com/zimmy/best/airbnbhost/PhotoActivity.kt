@@ -21,9 +21,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.zimmy.best.airbnbhost.Konstants.Konstants
 import com.zimmy.best.airbnbhost.databinding.ActivityPhotoBinding
 import com.zimmy.best.airbnbhost.model.BasicDetails
+import com.zimmy.best.airbnbhost.model.HostingDetails
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -43,6 +47,11 @@ class PhotoActivity : AppCompatActivity() {
     private lateinit var detailMap:HashMap<String,Boolean>
     private lateinit var photoList:ArrayList<String>
 
+
+    private lateinit var accountReference: DatabaseReference
+    private lateinit var hostingReference: DatabaseReference
+    private lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPhotoBinding.inflate(layoutInflater)
@@ -51,18 +60,31 @@ class PhotoActivity : AppCompatActivity() {
         basicData=intent.getSerializableExtra(Konstants.DATA) as BasicDetails
         roomList=intent.getStringArrayListExtra(Konstants.DATA2) as ArrayList<String> /* = java.util.ArrayList<kotlin.String> */
         detailMap=intent.getSerializableExtra(Konstants.DATA3) as HashMap<String, Boolean> /* = java.util.HashMap<kotlin.String, kotlin.Boolean> */
-
+        photoList= ArrayList()
+        mAuth = FirebaseAuth.getInstance()
+        val hostingCode = randomString(10)
 
         binding.saveAndNext.setOnClickListener {
+
             if (count == 0) {
-                Toast.makeText(this, "Select atleast one image", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Select at least one image", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val intent = Intent(this@PhotoActivity, CalenderActivity::class.java)
-            intent.putExtra(Konstants.DATA,basicData)
-            intent.putExtra(Konstants.DATA2,roomList)
-            intent.putExtra(Konstants.DATA3,detailMap)
+            intent.putExtra(Konstants.HOSTING_CODE,hostingCode)
             intent.putExtra(Konstants.DATA4,photoList)
+            startActivity(intent)
+
+            //firebase push
+            accountReference = FirebaseDatabase.getInstance().reference.child(Konstants.HOSTS)
+                .child(mAuth.uid.toString()).child(Konstants.HOSTINGS_MODEL1).child(hostingCode)
+            accountReference.setValue(basicData)
+            hostingReference =
+                FirebaseDatabase.getInstance().reference.child(Konstants.HOSTINGS_MODEL1)
+                    .child(hostingCode)
+            hostingReference.child(Konstants.BASICDETAILS).setValue(basicData)
+            val hostingDetails = HostingDetails(roomList, detailMap, photoList)
+            hostingReference.child(Konstants.RESTDETAILS).setValue(hostingDetails)
         }
 
         resultLauncher = registerForActivityResult(
@@ -125,6 +147,19 @@ class PhotoActivity : AppCompatActivity() {
                 fillTheLinearLayout(imageUriString)
             }
         }
+    }
+
+    private fun randomString(length: Int): String {
+        val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+        val sb = StringBuilder()
+        val random = Random()
+        for (i in 0 until length) {
+            val index = random.nextInt(alphabet.length)
+            val randomChar = alphabet[index]
+            sb.append(randomChar)
+        }
+        val randomString = sb.toString()
+        return randomString
     }
 
     private fun fillTheLinearLayout(imageUriString: String) {

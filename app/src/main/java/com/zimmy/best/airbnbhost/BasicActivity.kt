@@ -6,19 +6,17 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
-import android.location.LocationRequest
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY
 import com.zimmy.best.airbnbhost.Konstants.Konstants
 import com.zimmy.best.airbnbhost.databinding.ActivityBasicBinding
 import com.zimmy.best.airbnbhost.model.BasicDetails
@@ -45,14 +43,26 @@ class BasicActivity : AppCompatActivity() {
             if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 OnGps()
             } else {
-                getLocation()
+                Toast.makeText(this, "currently bypassing", Toast.LENGTH_SHORT).show()
+                latitude="21.683666942812454"
+                longitude="70.3761367600009"
+                gotLocation = true
+//                getLocation()
             }
         }
 
         binding.next.setOnClickListener {
+
+
+//            Log.v("price", binding.price.toString())
+
             val title = binding.title.text.toString()
+
+            Log.v("tittle is ", "$title")
+
             val primaryAddress = binding.primaryAddress.toString()
-            val pricing = binding.price.toString().toInt()
+//            val price=binding.price.toString()
+            val pricing: Double = 20.0
 
             //vila 0
             //hotel 1
@@ -81,7 +91,7 @@ class BasicActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
-            } else if (pricing == 0) {
+            } else if (pricing == 0.0) {
                 Toast.makeText(this@BasicActivity, "pricing can not be $0", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
@@ -93,7 +103,7 @@ class BasicActivity : AppCompatActivity() {
 
             val intent = Intent(this@BasicActivity, RoomActivity::class.java)
             val basicData =
-                BasicDetails(option, title, primaryAddress, longitude, latitude, pricing)
+                BasicDetails(option, title, primaryAddress, longitude, latitude, pricing,0.0,0,0)
             intent.putExtra(Konstants.DATA, basicData)
             startActivity(intent)
         }
