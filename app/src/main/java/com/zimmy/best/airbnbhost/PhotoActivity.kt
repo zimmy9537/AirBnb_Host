@@ -42,10 +42,10 @@ class PhotoActivity : AppCompatActivity() {
     private val CAMERA_REQUEST = 1888
     private lateinit var imageUri: Uri
     private lateinit var imageUriString: String
-    private lateinit var basicData:BasicDetails
-    private lateinit var roomList:ArrayList<String>
-    private lateinit var detailMap:HashMap<String,Boolean>
-    private lateinit var photoList:ArrayList<String>
+    private lateinit var basicData: BasicDetails
+    private lateinit var roomList: ArrayList<String>
+    private lateinit var detailMap: HashMap<String, Boolean>
+    private lateinit var photoList: ArrayList<String>
 
 
     private lateinit var accountReference: DatabaseReference
@@ -57,10 +57,12 @@ class PhotoActivity : AppCompatActivity() {
         binding = ActivityPhotoBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        basicData=intent.getSerializableExtra(Konstants.DATA) as BasicDetails
-        roomList=intent.getStringArrayListExtra(Konstants.DATA2) as ArrayList<String> /* = java.util.ArrayList<kotlin.String> */
-        detailMap=intent.getSerializableExtra(Konstants.DATA3) as HashMap<String, Boolean> /* = java.util.HashMap<kotlin.String, kotlin.Boolean> */
-        photoList= ArrayList()
+        basicData = intent.getSerializableExtra(Konstants.DATA) as BasicDetails
+        roomList =
+            intent.getStringArrayListExtra(Konstants.DATA2) as ArrayList<String> /* = java.util.ArrayList<kotlin.String> */
+        detailMap =
+            intent.getSerializableExtra(Konstants.DATA3) as HashMap<String, Boolean> /* = java.util.HashMap<kotlin.String, kotlin.Boolean> */
+        photoList = ArrayList()
         mAuth = FirebaseAuth.getInstance()
         val hostingCode = randomString(10)
 
@@ -71,11 +73,13 @@ class PhotoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             val intent = Intent(this@PhotoActivity, CalenderActivity::class.java)
-            intent.putExtra(Konstants.HOSTING_CODE,hostingCode)
-            intent.putExtra(Konstants.DATA4,photoList)
+            intent.putExtra(Konstants.HOSTING_CODE, hostingCode)
+            intent.putExtra(Konstants.DATA4, photoList)
             startActivity(intent)
 
             //firebase push
+            basicData.hostingCode = hostingCode
+            basicData.showHosting = true
             accountReference = FirebaseDatabase.getInstance().reference.child(Konstants.HOSTS)
                 .child(mAuth.uid.toString()).child(Konstants.HOSTINGS_MODEL1).child(hostingCode)
             accountReference.setValue(basicData)
@@ -84,7 +88,7 @@ class PhotoActivity : AppCompatActivity() {
                     .child(hostingCode)
             hostingReference.child(Konstants.BASICDETAILS).setValue(basicData)
             val hostingDetails = HostingDetails(roomList, detailMap, photoList)
-            hostingReference.child(Konstants.RESTDETAILS).setValue(hostingDetails)
+            hostingReference.child(Konstants.HOSTINGDETAILS).setValue(hostingDetails)
         }
 
         resultLauncher = registerForActivityResult(

@@ -14,11 +14,11 @@ class Konstants {
         const val HOSTINGS_MODEL2 = "HostingsModel2"
         const val HOSTINGS_MODEL3 = "HostingsModel3"
         const val BASICDETAILS = "BasicDetails"
-        const val RESTDETAILS = "RestDetails"
         const val PHOTOLIST = "photoList"
         const val HOSTINGDETAILS = "hostingDetails"
         const val DATEBNB = "DateBnb"
         const val BASIC_PHOTO = "basicPhoto"
+        const val SHOWHOSTING="showHosting"
 
 
         //shared preference

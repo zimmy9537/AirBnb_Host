@@ -13,7 +13,9 @@ data class BasicDetails(
     var available: Boolean,
     var rating: Double,
     var reviews: Int,
-    var totalRated: Int
+    var totalRated: Int,
+    var hostingCode: String,
+    var showHosting: Boolean
 ) : Serializable {
     constructor(
         option: Int,
@@ -36,8 +38,10 @@ data class BasicDetails(
         false,
         rating,
         reviews,
-        totalRated
+        totalRated,
+        "",
+        true
     )
 
-    constructor() : this(0, "", "", "", "", 0.0, "", false, 0.0, 0, 0)
+    constructor() : this(0, "", "", "", "", 0.0, "", false, 0.0, 0, 0, "", true)
 }

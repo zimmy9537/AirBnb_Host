@@ -24,9 +24,6 @@ import java.util.*
 class CalenderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCallenderBinding
-    private lateinit var basicDetails: BasicDetails
-    private lateinit var roomList: ArrayList<String>
-    private lateinit var detailMap: HashMap<String, Boolean>
     private lateinit var photoList: ArrayList<String>
     private lateinit var hostingCode: String
 
@@ -34,14 +31,6 @@ class CalenderActivity : AppCompatActivity() {
     private lateinit var hostingReference: DatabaseReference
     private lateinit var mAuth: FirebaseAuth
     private lateinit var storageReference: StorageReference
-
-    private var yearToday: Int = 1
-    private var monthToday: Int = 1
-    private var dayOfMonthToday: Int = 1
-
-    private var year: Int = 1
-    private var month: Int = 1
-    private var day: Int = 1
 
     private var LOG_TAG = CalenderActivity::class.java.simpleName
 
@@ -51,8 +40,6 @@ class CalenderActivity : AppCompatActivity() {
         binding = ActivityCallenderBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        setDate()
-        binding.calView.setDate(Date().time, true, true)
         mAuth = FirebaseAuth.getInstance()
 
 
@@ -60,46 +47,16 @@ class CalenderActivity : AppCompatActivity() {
         photoList =
             intent.getStringArrayListExtra(Konstants.DATA4) as ArrayList<String> /* = java.util.ArrayList<kotlin.String> */
 
-        binding.calView.setOnDateChangeListener(OnDateChangeListener { view, year, month, day ->
-            this.year = year
-            this.month = month
-            this.day = day
-            Log.v("date ", "$day/$month/$year")
-        })
+//        binding.calView.setOnDateChangeListener(OnDateChangeListener { view, year, month, day ->
+//            this.year = year
+//            this.month = month
+//            this.day = day
+//            Log.v("date ", "$day/$month/$year")
+//        })
 
 
         binding.saveAndNext.setOnClickListener {
-            setDate()
-
-            Log.v("date comp is ", "$dayOfMonthToday/$monthToday/$yearToday")
-
-            if (year < yearToday) {
-                Toast.makeText(this@CalenderActivity, "Select a future date", Toast.LENGTH_SHORT)
-                    .show()
-                return@setOnClickListener
-            } else {
-                if (month < monthToday) {
-                    Toast.makeText(
-                        this@CalenderActivity,
-                        "Select a future date",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-                    return@setOnClickListener
-                } else {
-                    if (day < dayOfMonthToday) {
-                        Toast.makeText(
-                            this@CalenderActivity,
-                            "Select a future date",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                        return@setOnClickListener
-                    } else {
-                        uploadPhotoToFirebase(photoList, hostingCode)
-                    }
-                }
-            }
+            uploadPhotoToFirebase(photoList, hostingCode)
         }
     }
 
@@ -129,16 +86,16 @@ class CalenderActivity : AppCompatActivity() {
                             }
                             j++
                             if (j == photoList.size) {
-                                val dateBnb = DateBnb(day, month, year)
                                 hostingReference =
                                     FirebaseDatabase.getInstance().reference.child(Konstants.HOSTINGS_MODEL1)
                                         .child(hostingCode)
-                                hostingReference.child(Konstants.RESTDETAILS)
+                                hostingReference.child(Konstants.HOSTINGDETAILS)
                                     .child(Konstants.PHOTOLIST)
                                     .setValue(photoList)
-                                hostingReference.child(Konstants.HOSTINGDETAILS)
-                                    .child(Konstants.DATEBNB)
-                                    .setValue(dateBnb)
+                                if (!binding.showHosting.isChecked) {
+                                    hostingReference.child(Konstants.BASICDETAILS)
+                                        .child(Konstants.SHOWHOSTING).setValue(false)
+                                }
                                 hostingReference.child(Konstants.BASICDETAILS)
                                     .child(Konstants.BASIC_PHOTO)
                                     .setValue(photoList[0])
@@ -171,12 +128,12 @@ class CalenderActivity : AppCompatActivity() {
         return randomString
     }
 
-    private fun setDate() {
-        val c: Date = Calendar.getInstance().time
-        val df = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val formattedDate: String = df.format(c)
-        dayOfMonthToday = formattedDate.slice(IntRange(0, 1)).toInt()
-        monthToday = formattedDate.slice(IntRange(3, 4)).toInt()
-        yearToday = formattedDate.slice(IntRange(6, 9)).toInt()
-    }
+//    private fun setDate() {
+//        val c: Date = Calendar.getInstance().time
+//        val df = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+//        val formattedDate: String = df.format(c)
+//        dayOfMonthToday = formattedDate.slice(IntRange(0, 1)).toInt()
+//        monthToday = formattedDate.slice(IntRange(3, 4)).toInt()
+//        yearToday = formattedDate.slice(IntRange(6, 9)).toInt()
+//    }
 }
