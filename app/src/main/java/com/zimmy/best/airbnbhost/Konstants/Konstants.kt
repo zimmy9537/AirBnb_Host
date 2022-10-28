@@ -19,6 +19,9 @@ class Konstants {
         const val DATEBNB = "DateBnb"
         const val BASIC_PHOTO = "basicPhoto"
         const val SHOWHOSTING="showHosting"
+        const val BOOKINGREQUEST="BookingRequest"
+        const val PAYMENTLEFT="PaymentLeft"
+        const val USERS = "Users"
 
 
         //shared preference

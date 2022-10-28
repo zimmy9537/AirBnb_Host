@@ -24,5 +24,9 @@ class HomeActivity : AppCompatActivity() {
         binding.newHosting.setOnClickListener {
             startActivity(Intent(this@HomeActivity, NewActivity::class.java))
         }
+
+        binding.bookingRequest.setOnClickListener {
+            startActivity(Intent(this@HomeActivity, BookingRequestActivity::class.java))
+        }
     }
 }

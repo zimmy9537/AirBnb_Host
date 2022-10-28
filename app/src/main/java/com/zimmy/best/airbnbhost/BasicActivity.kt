@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import com.zimmy.best.airbnbhost.Konstants.Konstants
 import com.zimmy.best.airbnbhost.databinding.ActivityBasicBinding
 import com.zimmy.best.airbnbhost.model.BasicDetails
@@ -44,8 +45,8 @@ class BasicActivity : AppCompatActivity() {
                 OnGps()
             } else {
                 Toast.makeText(this, "currently bypassing", Toast.LENGTH_SHORT).show()
-                latitude="21.683666942812454"
-                longitude="70.3761367600009"
+                latitude = "21.683666942812454"
+                longitude = "70.3761367600009"
                 gotLocation = true
 //                getLocation()
             }
@@ -103,7 +104,18 @@ class BasicActivity : AppCompatActivity() {
 
             val intent = Intent(this@BasicActivity, RoomActivity::class.java)
             val basicData =
-                BasicDetails(option, title, primaryAddress, longitude, latitude, pricing,0.0,0,0)
+                BasicDetails(
+                    option,
+                    title,
+                    primaryAddress,
+                    longitude,
+                    latitude,
+                    pricing,
+                    0.0,
+                    0,
+                    0,
+                    FirebaseAuth.getInstance().uid.toString()
+                )
             intent.putExtra(Konstants.DATA, basicData)
             startActivity(intent)
         }
